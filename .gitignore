@@ -1,0 +1,24 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# Environments
+env/
+venv/
+.env
+
+# Data (Ignore raw and interim, keep processed optional/minimal)
+data/raw/*
+!data/raw/.gitkeep
+data/interim/*
+!data/interim/.gitkeep
+# data/processed/ is left to user discretion but usually ignored if large
+
+# OS generated files
+.DS_Store
+Thumbs.db

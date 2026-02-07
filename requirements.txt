@@ -1,0 +1,21 @@
+# Data Processing & Analysis
+pandas
+numpy
+
+# Visualization
+matplotlib
+seaborn
+
+# Machine Learning & Text Mining
+scikit-learn
+nltk
+spacy
+
+# Web Scraping
+beautifulsoup4
+requests
+
+# Utilities
+tqdm
+ipykernel
+jupyter
