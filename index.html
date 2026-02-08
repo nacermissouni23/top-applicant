@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Applicant | Project Roadmap</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0B1120', // Slate 950
+                            surface: '#1E293B', // Slate 800
+                            accent: '#38BDF8', // Sky 400
+                            secondary: '#818CF8', // Indigo 400
+                            success: '#34D399', // Emerald 400
+                            danger: '#F87171', // Red 400
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B1120;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #38BDF8 0%, #818CF8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-observer {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+        .section-observer.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Connector lines for the pipeline */
+        .pipeline-connector::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -1rem;
+            width: 1rem;
+            height: 2px;
+            background: #475569;
+            z-index: 0;
+        }
+        @media (max-width: 768px) {
+            .pipeline-connector::after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-slate-300 font-sans antialiased selection:bg-brand-accent selection:text-brand-dark">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-panel border-b border-slate-700/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded bg-gradient-to-br from-brand-accent to-brand-secondary flex items-center justify-center text-brand-dark font-bold text-lg">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <span class="font-bold text-white text-lg tracking-tight">Top Applicant</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#overview" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:text-brand-accent transition-colors text-white">Overview</a>
+                        <a href="#objective" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:text-brand-accent transition-colors">Objective</a>
+                        <a href="#scope" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:text-brand-accent transition-colors">Scope</a>
+                        <a href="#inputs" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:text-brand-accent transition-colors">Inputs</a>
+                        <a href="#outputs" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:text-brand-accent transition-colors">Outputs</a>
+                        <a href="#roadmap" class="nav-link px-3 py-2 rounded-md text-sm font-medium hover:text-brand-accent transition-colors">Roadmap</a>
+                    </div>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden bg-brand-surface border-b border-slate-700" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#overview" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-slate-700">Overview</a>
+                <a href="#objective" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-slate-700">Objective</a>
+                <a href="#scope" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-slate-700">Scope</a>
+                <a href="#inputs" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-slate-700">Inputs</a>
+                <a href="#roadmap" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-slate-700">Roadmap</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-16">
+
+        <!-- 1. Overview Section -->
+        <section id="overview" class="min-h-screen flex items-center justify-center relative overflow-hidden section-observer">
+            <!-- Background Elements -->
+            <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 opacity-20">
+                <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-secondary rounded-full blur-[128px]"></div>
+                <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-brand-accent rounded-full blur-[128px]"></div>
+            </div>
+
+            <div class="max-w-4xl mx-auto px-4 text-center">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs font-mono text-brand-accent mb-6">
+                    <span class="w-2 h-2 rounded-full bg-brand-accent animate-pulse"></span>
+                    PROJECT STATUS: PLANNING
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold text-white tracking-tight mb-6">
+                    Engineering the <br>
+                    <span class="gradient-text">Ideal Candidate</span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+                    A data-driven initiative to model, optimize, and construct "Top Applicant" profiles in Data Science & AI by reverse-engineering market signals.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+                    <div class="p-6 rounded-xl bg-slate-800/50 border border-slate-700/50 hover:border-brand-accent/50 transition-colors">
+                        <i class="fa-solid fa-bullseye text-brand-accent text-2xl mb-4"></i>
+                        <h3 class="text-white font-semibold mb-2">Analyze</h3>
+                        <p class="text-sm text-slate-400">Parsing thousands of job descriptions to extract high-signal requirements.</p>
+                    </div>
+                    <div class="p-6 rounded-xl bg-slate-800/50 border border-slate-700/50 hover:border-brand-secondary/50 transition-colors">
+                        <i class="fa-solid fa-chart-line text-brand-secondary text-2xl mb-4"></i>
+                        <h3 class="text-white font-semibold mb-2">Optimize</h3>
+                        <p class="text-sm text-slate-400">Maximizing match scores against realistic market constraints.</p>
+                    </div>
+                    <div class="p-6 rounded-xl bg-slate-800/50 border border-slate-700/50 hover:border-brand-success/50 transition-colors">
+                        <i class="fa-solid fa-file-signature text-brand-success text-2xl mb-4"></i>
+                        <h3 class="text-white font-semibold mb-2">Construct</h3>
+                        <p class="text-sm text-slate-400">Generating ideal CV archetypes for specific roles and seniorities.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Objective Section -->
+        <section id="objective" class="py-24 bg-slate-900 section-observer">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Optimization Objectives</h2>
+                    <p class="text-slate-400">Defining the mathematical targets for a "Top Applicant"</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <!-- Left: Primary Targets (The Formula) -->
+                    <div class="bg-slate-800 rounded-2xl p-8 border border-slate-700 shadow-xl relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-4 opacity-10">
+                            <i class="fa-solid fa-calculator text-9xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-6 border-b border-slate-700 pb-2">Primary Targets</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-lg bg-brand-accent/20 flex items-center justify-center text-brand-accent shrink-0">
+                                    <i class="fa-solid fa-percent"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-mono font-bold">match_score ∈ [0, 1]</h4>
+                                    <p class="text-sm text-slate-400 mt-1">Semantic alignment between ideal CV and target job description.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-lg bg-brand-secondary/20 flex items-center justify-center text-brand-secondary shrink-0">
+                                    <i class="fa-solid fa-cubes-stacked"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-mono font-bold">skills_coverage</h4>
+                                    <p class="text-sm text-slate-400 mt-1">Weighted presence of high-value skills vs. market demand.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-lg bg-brand-success/20 flex items-center justify-center text-brand-success shrink-0">
+                                    <i class="fa-solid fa-check-double"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-mono font-bold">shortlist_probability</h4>
+                                    <p class="text-sm text-slate-400 mt-1">Modeled probability of passing initial screening.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Secondary Targets (The Context) -->
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-semibold text-slate-300 mb-4">Secondary Constraints</h3>
+                        
+                        <div class="p-4 rounded-lg border border-slate-700 bg-slate-800/50 flex items-center justify-between hover:border-slate-500 transition-colors">
+                            <div>
+                                <h5 class="text-white font-bold">Role Alignment</h5>
+                                <p class="text-xs text-slate-400">Experience matches responsibilities & tooling</p>
+                            </div>
+                            <div class="h-2 w-24 bg-slate-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-slate-400 w-3/4"></div>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-lg border border-slate-700 bg-slate-800/50 flex items-center justify-between hover:border-slate-500 transition-colors">
+                            <div>
+                                <h5 class="text-white font-bold">Seniority Fit</h5>
+                                <p class="text-xs text-slate-400">Depth matches level (Junior vs Senior)</p>
+                            </div>
+                            <div class="h-2 w-24 bg-slate-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-slate-400 w-1/2"></div>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-lg border border-slate-700 bg-slate-800/50 flex items-center justify-between hover:border-slate-500 transition-colors">
+                            <div>
+                                <h5 class="text-white font-bold">Market Competitiveness</h5>
+                                <p class="text-xs text-slate-400">Relative standing against peer candidates</p>
+                            </div>
+                            <div class="h-2 w-24 bg-slate-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-slate-400 w-4/5"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Scope Section -->
+        <section id="scope" class="py-24 bg-brand-dark section-observer">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Project Scope</h2>
+                    <p class="text-slate-400">Defining boundaries for the initial models.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Roles -->
+                    <div class="p-6 rounded-xl bg-slate-800 border-t-4 border-brand-accent">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i class="fa-solid fa-user-tag text-brand-accent"></i>
+                            <h3 class="font-bold text-white">Target Roles</h3>
+                        </div>
+                        <ul class="space-y-2 text-sm text-slate-300">
+                            <li>• Data Scientist</li>
+                            <li>• ML Engineer</li>
+                            <li>• AI Engineer</li>
+                            <li>• Data Analyst</li>
+                            <li>• Applied Scientist</li>
+                            <li>• Research Engineer</li>
+                        </ul>
+                    </div>
+
+                    <!-- Industries -->
+                    <div class="p-6 rounded-xl bg-slate-800 border-t-4 border-brand-secondary">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i class="fa-solid fa-building text-brand-secondary"></i>
+                            <h3 class="font-bold text-white">Domains</h3>
+                        </div>
+                        <ul class="space-y-2 text-sm text-slate-300">
+                            <li>• Technology</li>
+                            <li>• Software & SaaS</li>
+                            <li>• AI / ML Products</li>
+                            <li>• Fintech & Healthtech</li>
+                            <li>• Data-driven sectors</li>
+                        </ul>
+                    </div>
+
+                    <!-- Seniority -->
+                    <div class="p-6 rounded-xl bg-slate-800 border-t-4 border-brand-success">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i class="fa-solid fa-stairs text-brand-success"></i>
+                            <h3 class="font-bold text-white">Seniority</h3>
+                        </div>
+                        <ul class="space-y-2 text-sm text-slate-300">
+                            <li><span class="bg-brand-success/10 text-brand-success px-2 py-0.5 rounded text-xs">TIER 1</span> Entry / Junior</li>
+                            <li><span class="bg-brand-success/10 text-brand-success px-2 py-0.5 rounded text-xs">TIER 2</span> Mid-level</li>
+                            <li><span class="bg-brand-success/10 text-brand-success px-2 py-0.5 rounded text-xs">TIER 3</span> Senior</li>
+                        </ul>
+                    </div>
+
+                    <!-- Geography -->
+                    <div class="p-6 rounded-xl bg-slate-800 border-t-4 border-white">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i class="fa-solid fa-globe text-white"></i>
+                            <h3 class="font-bold text-white">Geography</h3>
+                        </div>
+                        <ul class="space-y-2 text-sm text-slate-300">
+                            <li>• Remote-first</li>
+                            <li>• Global English Markets</li>
+                            <li>• (No location-specific laws)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Exclusions -->
+                <div class="mt-12 p-6 rounded-xl border border-brand-danger/30 bg-brand-danger/5 flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-brand-danger/20 flex items-center justify-center text-brand-danger">
+                            <i class="fa-solid fa-ban"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold">Explicit Exclusions</h4>
+                            <p class="text-sm text-slate-400">This project strictly avoids non-technical roles, manual CV writing services, and hiring automation.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-2 flex-wrap justify-center">
+                        <span class="px-3 py-1 rounded-full border border-brand-danger/50 text-brand-danger text-xs">No PII</span>
+                        <span class="px-3 py-1 rounded-full border border-brand-danger/50 text-brand-danger text-xs">No Coaching</span>
+                        <span class="px-3 py-1 rounded-full border border-brand-danger/50 text-brand-danger text-xs">No Manual Formatting</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Inputs Section (Pipeline) -->
+        <section id="inputs" class="py-24 bg-slate-900 section-observer">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Data Pipeline</h2>
+                    <p class="text-slate-400">Raw signals into structured intelligence</p>
+                </div>
+
+                <div class="relative">
+                    <!-- Connector Line (Desktop) -->
+                    <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-gradient-to-r from-transparent via-slate-700 to-transparent -translate-y-1/2 z-0"></div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
+                        
+                        <!-- Step 1: Sources -->
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-lg text-center pipeline-connector">
+                            <div class="w-16 h-16 mx-auto bg-slate-700 rounded-full flex items-center justify-center text-2xl mb-4 text-sky-400 shadow-[0_0_15px_rgba(56,189,248,0.3)]">
+                                <i class="fa-solid fa-database"></i>
+                            </div>
+                            <h3 class="text-white font-bold mb-2">Sources</h3>
+                            <ul class="text-xs text-left space-y-2 text-slate-400 bg-slate-900/50 p-3 rounded">
+                                <li><i class="fa-solid fa-file-code mr-2"></i>Job Boards (HTML/JSON)</li>
+                                <li><i class="fa-solid fa-users mr-2"></i>Proxy Profiles</li>
+                                <li><i class="fa-solid fa-book mr-2"></i>Skill Ontologies</li>
+                            </ul>
+                        </div>
+
+                        <!-- Step 2: Schema -->
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-lg text-center pipeline-connector">
+                            <div class="w-16 h-16 mx-auto bg-slate-700 rounded-full flex items-center justify-center text-2xl mb-4 text-indigo-400 shadow-[0_0_15px_rgba(129,140,248,0.3)]">
+                                <i class="fa-solid fa-table"></i>
+                            </div>
+                            <h3 class="text-white font-bold mb-2">Normalization</h3>
+                            <div class="text-xs font-mono text-left bg-slate-900/50 p-3 rounded text-slate-400 border-l-2 border-indigo-400">
+                                {<br>
+                                &nbsp;&nbsp;job_id: "uuid",<br>
+                                &nbsp;&nbsp;skills: ["Python", "TF"],<br>
+                                &nbsp;&nbsp;seniority: "Mid",<br>
+                                &nbsp;&nbsp;remote: true<br>
+                                }
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Preprocessing -->
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-lg text-center pipeline-connector">
+                            <div class="w-16 h-16 mx-auto bg-slate-700 rounded-full flex items-center justify-center text-2xl mb-4 text-purple-400 shadow-[0_0_15px_rgba(192,132,252,0.3)]">
+                                <i class="fa-solid fa-filter"></i>
+                            </div>
+                            <h3 class="text-white font-bold mb-2">Cleaning</h3>
+                            <ul class="text-xs text-left space-y-2 text-slate-400 bg-slate-900/50 p-3 rounded">
+                                <li>• Text Normalization</li>
+                                <li>• Language Filtering (EN)</li>
+                                <li>• PII Removal / Masking</li>
+                                <li>• Deduplication</li>
+                            </ul>
+                        </div>
+
+                         <!-- Step 4: Extraction -->
+                         <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-lg text-center">
+                            <div class="w-16 h-16 mx-auto bg-slate-700 rounded-full flex items-center justify-center text-2xl mb-4 text-emerald-400 shadow-[0_0_15px_rgba(52,211,153,0.3)]">
+                                <i class="fa-solid fa-microchip"></i>
+                            </div>
+                            <h3 class="text-white font-bold mb-2">Features</h3>
+                            <div class="flex flex-wrap gap-2 justify-center mt-3">
+                                <span class="px-2 py-1 bg-emerald-500/10 text-emerald-500 text-[10px] rounded border border-emerald-500/20">Skill Vectors</span>
+                                <span class="px-2 py-1 bg-emerald-500/10 text-emerald-500 text-[10px] rounded border border-emerald-500/20">Exp Years</span>
+                                <span class="px-2 py-1 bg-emerald-500/10 text-emerald-500 text-[10px] rounded border border-emerald-500/20">Tool Stack</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Outputs & Success -->
+        <section id="outputs" class="py-24 bg-brand-dark section-observer">
+            <div class="max-w-7xl mx-auto px-4 lg:grid lg:grid-cols-2 lg:gap-16">
+                
+                <!-- Outputs Column -->
+                <div class="mb-12 lg:mb-0">
+                    <h2 class="text-3xl font-bold text-white mb-8">System Outputs</h2>
+                    
+                    <!-- Stacked Cards -->
+                    <div class="space-y-4">
+                        <!-- Top Layer -->
+                        <div class="p-6 bg-slate-800 rounded-lg border-l-4 border-brand-accent shadow-lg transform translate-x-4">
+                            <h3 class="text-lg font-bold text-white mb-1">Ranked Ideal Profiles</h3>
+                            <p class="text-sm text-slate-400">CV Archetypes optimized for specific roles & levels.</p>
+                        </div>
+                        
+                        <!-- Middle Layer -->
+                        <div class="p-6 bg-slate-800/80 rounded-lg border-l-4 border-brand-secondary shadow-lg transform translate-x-2">
+                            <h3 class="text-lg font-bold text-white mb-1">Explainability Artifacts</h3>
+                            <p class="text-sm text-slate-400">Skill gaps, contribution scores, missing keywords.</p>
+                        </div>
+                        
+                        <!-- Base Layer -->
+                        <div class="p-6 bg-slate-800/60 rounded-lg border-l-4 border-slate-500 shadow-lg">
+                            <h3 class="text-lg font-bold text-white mb-1">Model Metrics</h3>
+                            <p class="text-sm text-slate-400">Calibration curves, feature stores, scoring functions.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Success Criteria Column -->
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-8">Success Criteria</h2>
+                    <div class="bg-slate-800/50 rounded-2xl p-6 border border-slate-700">
+                        
+                        <div class="space-y-6">
+                            <!-- Criterion 1 -->
+                            <div>
+                                <div class="flex justify-between items-end mb-2">
+                                    <span class="text-white font-medium">Signal Quality (Extraction)</span>
+                                    <span class="text-brand-success font-mono">Target: >80%</span>
+                                </div>
+                                <div class="w-full bg-slate-700 rounded-full h-2">
+                                    <div class="bg-brand-success h-2 rounded-full w-[80%] relative">
+                                        <div class="absolute right-0 -top-1 w-4 h-4 bg-white rounded-full shadow cursor-pointer hover:scale-125 transition-transform"></div>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-1">Accurate extraction of high-frequency skills.</p>
+                            </div>
+
+                            <!-- Criterion 2 -->
+                            <div>
+                                <div class="flex justify-between items-end mb-2">
+                                    <span class="text-white font-medium">Probability Calibration</span>
+                                    <span class="text-brand-accent font-mono">Error: ±5%</span>
+                                </div>
+                                <div class="w-full bg-slate-700 rounded-full h-2">
+                                    <div class="bg-brand-accent h-2 rounded-full w-[95%]"></div>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-1">Accuracy of shortlist probability predictions.</p>
+                            </div>
+
+                            <!-- Criterion 3 -->
+                            <div>
+                                <div class="flex justify-between items-end mb-2">
+                                    <span class="text-white font-medium">Market Realism</span>
+                                    <span class="text-brand-secondary font-mono">High</span>
+                                </div>
+                                <div class="flex gap-1 mt-2">
+                                    <span class="h-1.5 flex-1 bg-brand-secondary rounded"></span>
+                                    <span class="h-1.5 flex-1 bg-brand-secondary rounded"></span>
+                                    <span class="h-1.5 flex-1 bg-brand-secondary rounded"></span>
+                                    <span class="h-1.5 flex-1 bg-brand-secondary rounded opacity-50"></span>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-1">Seniority coherence & realistic skill combos.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 6. Roadmap -->
+        <section id="roadmap" class="py-24 bg-slate-900 section-observer">
+            <div class="max-w-5xl mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Execution Roadmap</h2>
+                    <p class="text-slate-400">Phased approach from foundations to artifacts</p>
+                </div>
+
+                <div class="relative border-l border-slate-700 ml-4 md:ml-0 md:pl-0 space-y-12 md:space-y-0">
+                    
+                    <!-- Phase 0-2: Foundations -->
+                    <div class="md:flex items-center justify-between group">
+                        <div class="hidden md:block w-5/12 text-right pr-8">
+                            <h3 class="text-xl font-bold text-white group-hover:text-brand-accent transition-colors">Foundations & Data</h3>
+                            <p class="text-sm text-slate-400 mt-2">Environment setup, raw data collection, cleaning, PII handling.</p>
+                        </div>
+                        <div class="absolute left-[-5px] md:left-1/2 md:-ml-3 w-6 h-6 rounded-full bg-brand-dark border-4 border-slate-600 group-hover:border-brand-accent transition-colors"></div>
+                        <div class="pl-8 md:pl-8 md:w-5/12">
+                            <span class="inline-block px-2 py-1 text-xs font-mono text-slate-300 bg-slate-800 rounded mb-2">PHASE 0 - 2</span>
+                            <div class="block md:hidden">
+                                <h3 class="text-xl font-bold text-white">Foundations & Data</h3>
+                                <p class="text-sm text-slate-400 mt-2">Environment setup, raw data collection, cleaning.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phase 3-5: Analysis -->
+                    <div class="md:flex items-center justify-between group pt-8">
+                        <div class="hidden md:block w-5/12 text-right pr-8">
+                             <span class="inline-block px-2 py-1 text-xs font-mono text-slate-300 bg-slate-800 rounded mb-2">PHASE 3 - 5</span>
+                             <div class="block md:hidden"> <!-- Spacer for layout symmetry --></div>
+                        </div>
+                        <div class="absolute left-[-5px] md:left-1/2 md:-ml-3 w-6 h-6 rounded-full bg-brand-dark border-4 border-slate-600 group-hover:border-brand-secondary transition-colors"></div>
+                        <div class="pl-8 md:pl-8 md:w-5/12">
+                            <h3 class="text-xl font-bold text-white group-hover:text-brand-secondary transition-colors">Extraction & EDA</h3>
+                            <p class="text-sm text-slate-400 mt-2">Skill ontology definition, representation learning, feature store build.</p>
+                            <span class="md:hidden inline-block px-2 py-1 text-xs font-mono text-slate-300 bg-slate-800 rounded mt-2">PHASE 3 - 5</span>
+                        </div>
+                    </div>
+
+                    <!-- Phase 6-7: Modeling -->
+                    <div class="md:flex items-center justify-between group pt-8">
+                        <div class="hidden md:block w-5/12 text-right pr-8">
+                            <h3 class="text-xl font-bold text-white group-hover:text-brand-success transition-colors">Modeling & Optimization</h3>
+                            <p class="text-sm text-slate-400 mt-2">Baseline scorers, semantic similarity, constraint optimization.</p>
+                        </div>
+                        <div class="absolute left-[-5px] md:left-1/2 md:-ml-3 w-6 h-6 rounded-full bg-brand-dark border-4 border-slate-600 group-hover:border-brand-success transition-colors"></div>
+                        <div class="pl-8 md:pl-8 md:w-5/12">
+                            <span class="inline-block px-2 py-1 text-xs font-mono text-slate-300 bg-slate-800 rounded mb-2">PHASE 6 - 7</span>
+                            <div class="block md:hidden">
+                                <h3 class="text-xl font-bold text-white">Modeling & Optimization</h3>
+                                <p class="text-sm text-slate-400 mt-2">Baseline scorers, semantic similarity, constraint optimization.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phase 8-9: Finalization -->
+                    <div class="md:flex items-center justify-between group pt-8">
+                        <div class="hidden md:block w-5/12 text-right pr-8">
+                             <span class="inline-block px-2 py-1 text-xs font-mono text-slate-300 bg-slate-800 rounded mb-2">PHASE 8 - 9</span>
+                        </div>
+                        <div class="absolute left-[-5px] md:left-1/2 md:-ml-3 w-6 h-6 rounded-full bg-brand-dark border-4 border-slate-600 group-hover:border-white transition-colors"></div>
+                        <div class="pl-8 md:pl-8 md:w-5/12">
+                            <h3 class="text-xl font-bold text-white group-hover:text-white transition-colors">Validation & Artifacts</h3>
+                            <p class="text-sm text-slate-400 mt-2">Ranking evaluation, explainability generation, final reporting.</p>
+                            <span class="md:hidden inline-block px-2 py-1 text-xs font-mono text-slate-300 bg-slate-800 rounded mt-2">PHASE 8 - 9</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Scripts for Interactivity -->
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Intersection Observer for Section Animation
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    entry.target.classList.add('animate-fade-in-up');
+                    observer.unobserve(entry.target); // Only animate once
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section-observer').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Active Link Highlighter
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('text-brand-accent');
+                        link.classList.add('text-white');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('text-brand-accent');
+                            link.classList.remove('text-white');
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('section').forEach(section => {
+            navObserver.observe(section);
+        });
+    </script>
+</body>
+</html>
