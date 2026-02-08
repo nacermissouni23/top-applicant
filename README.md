@@ -1,7 +1,7 @@
 ﻿# Top Applicant: Global Job Description Analysis
 
 ## Project Goal
-The primary objective of this project is to analyze real-world job descriptions to extract underlying patterns, identify high-demand skills, and define emerging role archetypes through data mining and machine learning techniques.
+Top Applicant: Build ideal CVs in data science, machine learning, AI, and related fields by analyzing job trends and high-performing profiles. Highlight the key skills, experiences, and qualifications needed to define a “top applicant,” providing users with a reference to design their own career roadmaps.
 
 ## Motivation
 As the global labor market becomes increasingly dynamic, understanding the specific requirements and evolving expectations of employers is crucial for job seekers, educational institutions, and recruiters. This research seeks to bridge the gap between candidate qualifications and industry needs by providing data-driven insights into the current employment landscape.

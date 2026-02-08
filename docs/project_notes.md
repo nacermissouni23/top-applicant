@@ -1,7 +1,7 @@
 # Project Notes: Top Applicant
 
 ## Project Idea
-The goal is to move beyond simple keyword counting in job descriptions. By leveraging NLP and unsupervised learning, we aim to discover how "Software Engineer" in one region or industry differs from another, and what "hidden" skills are consistently grouped together.
+Top Applicant: Build ideal CVs in data science, machine learning, AI, and related fields by analyzing job trends and high-performing profiles. Highlight the key skills, experiences, and qualifications needed to define a “top applicant,” providing users with a reference to design their own career roadmaps.
 
 ## Initial Assumptions
 - Job descriptions contain a mix of boilerplate text and role-specific requirements.
