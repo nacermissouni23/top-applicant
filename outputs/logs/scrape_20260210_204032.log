@@ -1,0 +1,174 @@
+2026-02-10 20:40:32,943 | INFO    | src.pipeline | ============================================================
+2026-02-10 20:40:32,945 | INFO    | src.pipeline | TOP APPLICANT — Data Collection Pipeline
+2026-02-10 20:40:32,946 | INFO    | src.pipeline | Schema version: 0.2
+2026-02-10 20:40:32,948 | INFO    | src.pipeline | Dataset version: v0.2
+2026-02-10 20:40:32,949 | INFO    | src.pipeline | Search: 'Data Scientist' | Location: '' | Limit: 25
+2026-02-10 20:40:32,950 | INFO    | src.pipeline | ============================================================
+2026-02-10 20:40:32,951 | INFO    | src.scraping.linkedin_scraper | Phase 1: Scraping up to 25 listings for 'Data Scientist' in ''
+2026-02-10 20:40:34,720 | INFO    | src.scraping.linkedin_scraper |   [1] Data Scientist Intern @ Tinder
+2026-02-10 20:40:34,721 | INFO    | src.scraping.linkedin_scraper |   [2] Data Scientist I, Integrity @ Tinder
+2026-02-10 20:40:34,722 | INFO    | src.scraping.linkedin_scraper |   [3] Data Scientist (L5) , Performance Marketing @ Netflix
+2026-02-10 20:40:34,723 | INFO    | src.scraping.linkedin_scraper |   [4] Head of Artificial Intelligence and Data Science @ Addison Group
+2026-02-10 20:40:34,725 | INFO    | src.scraping.linkedin_scraper |   [5] Data Scientist (L4) -  Marketing and Experience DSE @ Netflix
+2026-02-10 20:40:34,726 | INFO    | src.scraping.linkedin_scraper |   [6] Data Scientist Analyst @ MedReview Inc.
+2026-02-10 20:40:34,730 | INFO    | src.scraping.linkedin_scraper |   [7] Data Scientist @ Roku
+2026-02-10 20:40:34,731 | INFO    | src.scraping.linkedin_scraper |   [8] Data Scientist I, Integrity @ Tinder
+2026-02-10 20:40:34,732 | INFO    | src.scraping.linkedin_scraper |   [9] Data Scientist I, Integrity @ Tinder
+2026-02-10 20:40:34,733 | INFO    | src.scraping.linkedin_scraper |   [10] Machine Learning Engineer Intern @ Tinder
+2026-02-10 20:40:38,768 | INFO    | src.scraping.linkedin_scraper |   [11] Data Scientist 5 - Ads Identity @ Netflix
+2026-02-10 20:40:38,769 | INFO    | src.scraping.linkedin_scraper |   [12] Data Scientist 4/5 - Identity DSE @ Netflix
+2026-02-10 20:40:38,770 | INFO    | src.scraping.linkedin_scraper |   [13] Data Scientist, Product Analytics @ Meta
+2026-02-10 20:40:38,772 | INFO    | src.scraping.linkedin_scraper |   [14] Data Scientist - Data-Driven Global Investment Firm @ Andiamo
+2026-02-10 20:40:38,774 | INFO    | src.scraping.linkedin_scraper |   [15] Data Scientist - Campus Full-Time @ Two Sigma
+2026-02-10 20:40:38,776 | INFO    | src.scraping.linkedin_scraper |   [16] Data Scientist - Decisions, Lyft Urban Solutions @ Lyft
+2026-02-10 20:40:38,777 | INFO    | src.scraping.linkedin_scraper |   [17] Staff Data Scientist @ LinkedIn
+2026-02-10 20:40:38,778 | INFO    | src.scraping.linkedin_scraper |   [18] Data Scientist @ Two Sigma
+2026-02-10 20:40:38,779 | INFO    | src.scraping.linkedin_scraper |   [19] Data Scientist @ StreetID
+2026-02-10 20:40:38,781 | INFO    | src.scraping.linkedin_scraper |   [20] Principal Research Scientist @ Next Phase Recruitment
+2026-02-10 20:40:43,996 | INFO    | src.scraping.linkedin_scraper |   [21] Data Scientist, Lifecycle Marketing @ Wealthfront
+2026-02-10 20:40:43,997 | INFO    | src.scraping.linkedin_scraper |   [22] Data Scientist @ Kinect
+2026-02-10 20:40:43,997 | INFO    | src.scraping.linkedin_scraper |   [23] Data Scientist, Product Analytics @ Meta
+2026-02-10 20:40:43,998 | INFO    | src.scraping.linkedin_scraper |   [24] Data Scientist @ Juul Labs
+2026-02-10 20:40:44,000 | INFO    | src.scraping.linkedin_scraper |   [25] Data Scientist 5- Content DSE @ Netflix
+2026-02-10 20:40:46,245 | INFO    | src.scraping.linkedin_scraper | Phase 1 complete: 25 listings scraped.
+2026-02-10 20:40:46,250 | INFO    | src.pipeline | Saved raw listings: ../data/raw\raw_listings_20260210_204046.json
+2026-02-10 20:40:46,250 | INFO    | src.scraping.linkedin_scraper | Phase 2: Enriching 25 listings with full descriptions
+2026-02-10 20:40:46,251 | INFO    | src.scraping.linkedin_scraper |   [1/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-intern-at-tinder-4323761210
+2026-02-10 20:40:49,678 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 4 required
+2026-02-10 20:40:49,679 | INFO    | src.scraping.linkedin_scraper |   [2/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-i-integrity-at-tinder-4367025321
+2026-02-10 20:40:54,678 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 6 required
+2026-02-10 20:40:54,679 | INFO    | src.scraping.linkedin_scraper |   [3/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-l5-performance-marketing-at-netflix-4313094719
+2026-02-10 20:40:58,355 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 6 required
+2026-02-10 20:40:58,355 | INFO    | src.scraping.linkedin_scraper |   [4/25] Fetching: https://www.linkedin.com/jobs/view/head-of-artificial-intelligence-and-data-science-at-addison-group-4368254991
+2026-02-10 20:41:01,717 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Head of Artificial Intelligence and Data Science | Seniority: Staff/Lead | Skills: 2 required
+2026-02-10 20:41:01,718 | INFO    | src.scraping.linkedin_scraper |   [5/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-l4-marketing-and-experience-dse-at-netflix-4341990612
+2026-02-10 20:41:04,951 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 4 required
+2026-02-10 20:41:04,952 | INFO    | src.scraping.linkedin_scraper |   [6/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-analyst-at-medreview-inc-4361492622
+2026-02-10 20:41:08,814 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 8 required
+2026-02-10 20:41:08,814 | INFO    | src.scraping.linkedin_scraper |   [7/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-at-roku-4359751153
+2026-02-10 20:41:13,531 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 8 required
+2026-02-10 20:41:13,531 | INFO    | src.scraping.linkedin_scraper |   [8/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-i-integrity-at-tinder-4367007948
+2026-02-10 20:41:17,286 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 6 required
+2026-02-10 20:41:17,287 | INFO    | src.scraping.linkedin_scraper |   [9/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-i-integrity-at-tinder-4367011795
+2026-02-10 20:41:22,564 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 6 required
+2026-02-10 20:41:22,564 | INFO    | src.scraping.linkedin_scraper |   [10/25] Fetching: https://www.linkedin.com/jobs/view/machine-learning-engineer-intern-at-tinder-4323750983
+2026-02-10 20:41:30,139 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Machine Learning Engineer | Seniority: Senior | Skills: 3 required
+2026-02-10 20:41:30,140 | INFO    | src.scraping.linkedin_scraper |   [11/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-5-ads-identity-at-netflix-4356549998
+2026-02-10 20:41:33,188 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 5 required
+2026-02-10 20:41:33,189 | INFO    | src.scraping.linkedin_scraper |   [12/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-4-5-identity-dse-at-netflix-4348419825
+2026-02-10 20:41:36,887 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 7 required
+2026-02-10 20:41:36,888 | INFO    | src.scraping.linkedin_scraper |   [13/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-product-analytics-at-meta-4120823523
+2026-02-10 20:41:39,635 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 8 required
+2026-02-10 20:41:39,636 | INFO    | src.scraping.linkedin_scraper |   [14/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-data-driven-global-investment-firm-at-andiamo-4306618897
+2026-02-10 20:41:43,484 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 2 required
+2026-02-10 20:41:43,485 | INFO    | src.scraping.linkedin_scraper |   [15/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-campus-full-time-at-two-sigma-4351354278
+2026-02-10 20:41:48,193 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 2 required
+2026-02-10 20:41:48,194 | INFO    | src.scraping.linkedin_scraper |   [16/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-decisions-lyft-urban-solutions-at-lyft-4369992190
+2026-02-10 20:41:51,357 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 2 required
+2026-02-10 20:41:51,357 | INFO    | src.scraping.linkedin_scraper |   [17/25] Fetching: https://www.linkedin.com/jobs/view/staff-data-scientist-at-linkedin-4365223573
+2026-02-10 20:41:55,635 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Staff/Lead | Skills: 11 required
+2026-02-10 20:41:55,636 | INFO    | src.scraping.linkedin_scraper |   [18/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-at-two-sigma-4209153448
+2026-02-10 20:41:59,042 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 2 required
+2026-02-10 20:41:59,043 | INFO    | src.scraping.linkedin_scraper |   [19/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-at-streetid-3819704675
+2026-02-10 20:42:01,988 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 3 required
+2026-02-10 20:42:01,989 | INFO    | src.scraping.linkedin_scraper |   [20/25] Fetching: https://www.linkedin.com/jobs/view/principal-research-scientist-at-next-phase-recruitment-4357715025
+2026-02-10 20:42:06,398 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Research Scientist | Seniority: Staff/Lead | Skills: 4 required
+2026-02-10 20:42:06,398 | INFO    | src.scraping.linkedin_scraper |   [21/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-lifecycle-marketing-at-wealthfront-4330764625
+2026-02-10 20:42:10,111 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 5 required
+2026-02-10 20:42:10,111 | INFO    | src.scraping.linkedin_scraper |   [22/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-at-kinect-4370029551
+2026-02-10 20:42:14,059 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 6 required
+2026-02-10 20:42:14,059 | INFO    | src.scraping.linkedin_scraper |   [23/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-product-analytics-at-meta-4120391416
+2026-02-10 20:42:17,623 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 8 required
+2026-02-10 20:42:17,624 | INFO    | src.scraping.linkedin_scraper |   [24/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-at-juul-labs-4344769602
+2026-02-10 20:42:20,832 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Unknown | Skills: 11 required
+2026-02-10 20:42:20,833 | INFO    | src.scraping.linkedin_scraper |   [25/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-5-content-dse-at-netflix-4357369415
+2026-02-10 20:42:24,772 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 8 required
+2026-02-10 20:42:24,773 | INFO    | src.scraping.linkedin_scraper | Phase 2 complete: 25/25 records parsed (100% success rate)
+2026-02-10 20:42:24,776 | INFO    | src.pipeline | Schema validation: PASSED
+2026-02-10 20:47:05,888 | INFO    | src.pipeline | ============================================================
+2026-02-10 20:47:05,888 | INFO    | src.pipeline | TOP APPLICANT — Data Collection Pipeline
+2026-02-10 20:47:05,889 | INFO    | src.pipeline | Schema version: 0.2
+2026-02-10 20:47:05,890 | INFO    | src.pipeline | Dataset version: v0.2
+2026-02-10 20:47:05,891 | INFO    | src.pipeline | Search: 'Data Scientist' | Location: '' | Limit: 25
+2026-02-10 20:47:05,892 | INFO    | src.pipeline | ============================================================
+2026-02-10 20:47:05,893 | INFO    | src.scraping.linkedin_scraper | Phase 1: Scraping up to 25 listings for 'Data Scientist' in ''
+2026-02-10 20:47:09,061 | INFO    | src.scraping.linkedin_scraper |   [1] Data Scientist Intern @ Tinder
+2026-02-10 20:47:09,061 | INFO    | src.scraping.linkedin_scraper |   [2] Data Scientist I, Integrity @ Tinder
+2026-02-10 20:47:09,063 | INFO    | src.scraping.linkedin_scraper |   [3] Data Scientist (L5) , Performance Marketing @ Netflix
+2026-02-10 20:47:09,065 | INFO    | src.scraping.linkedin_scraper |   [4] Head of Artificial Intelligence and Data Science @ Addison Group
+2026-02-10 20:47:09,066 | INFO    | src.scraping.linkedin_scraper |   [5] Data Scientist (L4) -  Marketing and Experience DSE @ Netflix
+2026-02-10 20:47:09,067 | INFO    | src.scraping.linkedin_scraper |   [6] Data Scientist Analyst @ MedReview Inc.
+2026-02-10 20:47:09,068 | INFO    | src.scraping.linkedin_scraper |   [7] Data Scientist @ Roku
+2026-02-10 20:47:09,070 | INFO    | src.scraping.linkedin_scraper |   [8] Data Scientist I, Integrity @ Tinder
+2026-02-10 20:47:09,072 | INFO    | src.scraping.linkedin_scraper |   [9] Data Scientist I, Integrity @ Tinder
+2026-02-10 20:47:09,074 | INFO    | src.scraping.linkedin_scraper |   [10] Machine Learning Engineer Intern @ Tinder
+2026-02-10 20:47:13,926 | INFO    | src.scraping.linkedin_scraper |   [11] Data Scientist 5 - Ads Identity @ Netflix
+2026-02-10 20:47:13,927 | INFO    | src.scraping.linkedin_scraper |   [12] Data Scientist 4/5 - Identity DSE @ Netflix
+2026-02-10 20:47:13,928 | INFO    | src.scraping.linkedin_scraper |   [13] Data Scientist, Product Analytics @ Meta
+2026-02-10 20:47:13,929 | INFO    | src.scraping.linkedin_scraper |   [14] Data Scientist - Data-Driven Global Investment Firm @ Andiamo
+2026-02-10 20:47:13,931 | INFO    | src.scraping.linkedin_scraper |   [15] Data Scientist - Campus Full-Time @ Two Sigma
+2026-02-10 20:47:13,934 | INFO    | src.scraping.linkedin_scraper |   [16] Data Scientist - Decisions, Lyft Urban Solutions @ Lyft
+2026-02-10 20:47:13,935 | INFO    | src.scraping.linkedin_scraper |   [17] Staff Data Scientist @ LinkedIn
+2026-02-10 20:47:13,936 | INFO    | src.scraping.linkedin_scraper |   [18] Data Scientist @ Two Sigma
+2026-02-10 20:47:13,937 | INFO    | src.scraping.linkedin_scraper |   [19] Data Scientist @ StreetID
+2026-02-10 20:47:13,938 | INFO    | src.scraping.linkedin_scraper |   [20] Principal Research Scientist @ Next Phase Recruitment
+2026-02-10 20:47:19,042 | INFO    | src.scraping.linkedin_scraper |   [21] Data Scientist, Lifecycle Marketing @ Wealthfront
+2026-02-10 20:47:19,043 | INFO    | src.scraping.linkedin_scraper |   [22] Data Scientist @ Kinect
+2026-02-10 20:47:19,044 | INFO    | src.scraping.linkedin_scraper |   [23] Data Scientist, Product Analytics @ Meta
+2026-02-10 20:47:19,045 | INFO    | src.scraping.linkedin_scraper |   [24] Data Scientist @ Juul Labs
+2026-02-10 20:47:19,046 | INFO    | src.scraping.linkedin_scraper |   [25] Data Scientist 5- Content DSE @ Netflix
+2026-02-10 20:47:21,176 | INFO    | src.scraping.linkedin_scraper | Phase 1 complete: 25 listings scraped.
+2026-02-10 20:47:21,180 | INFO    | src.pipeline | Saved raw listings: ../data/raw\raw_listings_20260210_204721.json
+2026-02-10 20:47:21,181 | INFO    | src.scraping.linkedin_scraper | Phase 2: Enriching 25 listings with full descriptions
+2026-02-10 20:47:21,182 | INFO    | src.scraping.linkedin_scraper |   [1/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-intern-at-tinder-4323761210
+2026-02-10 20:47:25,732 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 4 required
+2026-02-10 20:47:25,733 | INFO    | src.scraping.linkedin_scraper |   [2/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-i-integrity-at-tinder-4367025321
+2026-02-10 20:47:29,283 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 6 required
+2026-02-10 20:47:29,284 | INFO    | src.scraping.linkedin_scraper |   [3/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-l5-performance-marketing-at-netflix-4313094719
+2026-02-10 20:47:33,511 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 6 required
+2026-02-10 20:47:33,512 | INFO    | src.scraping.linkedin_scraper |   [4/25] Fetching: https://www.linkedin.com/jobs/view/head-of-artificial-intelligence-and-data-science-at-addison-group-4368254991
+2026-02-10 20:47:37,838 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Head of Artificial Intelligence and Data Science | Seniority: Staff/Lead | Skills: 2 required
+2026-02-10 20:47:37,840 | INFO    | src.scraping.linkedin_scraper |   [5/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-l4-marketing-and-experience-dse-at-netflix-4341990612
+2026-02-10 20:47:42,691 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 4 required
+2026-02-10 20:47:42,691 | INFO    | src.scraping.linkedin_scraper |   [6/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-analyst-at-medreview-inc-4361492622
+2026-02-10 20:47:46,648 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 8 required
+2026-02-10 20:47:46,649 | INFO    | src.scraping.linkedin_scraper |   [7/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-at-roku-4359751153
+2026-02-10 20:47:51,656 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 8 required
+2026-02-10 20:47:51,657 | INFO    | src.scraping.linkedin_scraper |   [8/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-i-integrity-at-tinder-4367007948
+2026-02-10 20:47:54,454 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 6 required
+2026-02-10 20:47:54,455 | INFO    | src.scraping.linkedin_scraper |   [9/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-i-integrity-at-tinder-4367011795
+2026-02-10 20:47:58,997 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 6 required
+2026-02-10 20:47:58,997 | INFO    | src.scraping.linkedin_scraper |   [10/25] Fetching: https://www.linkedin.com/jobs/view/machine-learning-engineer-intern-at-tinder-4323750983
+2026-02-10 20:48:04,965 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Machine Learning Engineer | Seniority: Senior | Skills: 3 required
+2026-02-10 20:48:04,966 | INFO    | src.scraping.linkedin_scraper |   [11/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-5-ads-identity-at-netflix-4356549998
+2026-02-10 20:48:08,989 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 5 required
+2026-02-10 20:48:08,989 | INFO    | src.scraping.linkedin_scraper |   [12/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-4-5-identity-dse-at-netflix-4348419825
+2026-02-10 20:48:11,820 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 7 required
+2026-02-10 20:48:11,821 | INFO    | src.scraping.linkedin_scraper |   [13/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-product-analytics-at-meta-4120823523
+2026-02-10 20:48:14,997 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 8 required
+2026-02-10 20:48:14,997 | INFO    | src.scraping.linkedin_scraper |   [14/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-data-driven-global-investment-firm-at-andiamo-4306618897
+2026-02-10 20:48:19,018 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 2 required
+2026-02-10 20:48:19,019 | INFO    | src.scraping.linkedin_scraper |   [15/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-campus-full-time-at-two-sigma-4351354278
+2026-02-10 20:48:23,788 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 2 required
+2026-02-10 20:48:23,789 | INFO    | src.scraping.linkedin_scraper |   [16/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-decisions-lyft-urban-solutions-at-lyft-4369992190
+2026-02-10 20:48:27,220 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 2 required
+2026-02-10 20:48:27,221 | INFO    | src.scraping.linkedin_scraper |   [17/25] Fetching: https://www.linkedin.com/jobs/view/staff-data-scientist-at-linkedin-4365223573
+2026-02-10 20:48:30,793 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Staff/Lead | Skills: 11 required
+2026-02-10 20:48:30,793 | INFO    | src.scraping.linkedin_scraper |   [18/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-at-two-sigma-4209153448
+2026-02-10 20:48:33,825 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 2 required
+2026-02-10 20:48:33,825 | INFO    | src.scraping.linkedin_scraper |   [19/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-at-streetid-3819704675
+2026-02-10 20:48:37,377 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 3 required
+2026-02-10 20:48:37,378 | INFO    | src.scraping.linkedin_scraper |   [20/25] Fetching: https://www.linkedin.com/jobs/view/principal-research-scientist-at-next-phase-recruitment-4357715025
+2026-02-10 20:48:42,988 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Research Scientist | Seniority: Staff/Lead | Skills: 4 required
+2026-02-10 20:48:42,988 | INFO    | src.scraping.linkedin_scraper |   [21/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-lifecycle-marketing-at-wealthfront-4330764625
+2026-02-10 20:48:45,374 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 5 required
+2026-02-10 20:48:45,374 | INFO    | src.scraping.linkedin_scraper |   [22/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-at-kinect-4370029551
+2026-02-10 20:48:47,759 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 6 required
+2026-02-10 20:48:47,759 | INFO    | src.scraping.linkedin_scraper |   [23/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-product-analytics-at-meta-4120391416
+2026-02-10 20:48:52,232 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 8 required
+2026-02-10 20:48:52,233 | INFO    | src.scraping.linkedin_scraper |   [24/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-at-juul-labs-4344769602
+2026-02-10 20:48:56,667 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Unknown | Skills: 11 required
+2026-02-10 20:48:56,668 | INFO    | src.scraping.linkedin_scraper |   [25/25] Fetching: https://www.linkedin.com/jobs/view/data-scientist-5-content-dse-at-netflix-4357369415
+2026-02-10 20:49:01,069 | INFO    | src.scraping.linkedin_scraper |     ✓ Parsed: Data Scientist | Seniority: Senior | Skills: 8 required
+2026-02-10 20:49:01,070 | INFO    | src.scraping.linkedin_scraper | Phase 2 complete: 25/25 records parsed (100% success rate)
+2026-02-10 20:49:01,074 | INFO    | src.pipeline | Schema validation: PASSED

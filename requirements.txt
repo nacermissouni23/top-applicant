@@ -1,6 +1,7 @@
 # Data Processing & Analysis
 pandas
 numpy
+pyarrow
 
 # Visualization
 matplotlib

@@ -1,0 +1,17 @@
+{
+  "timestamp": "2026-02-10T20:55:09.032818",
+  "schema_version": "0.2",
+  "dataset_version": "v0.2",
+  "scrape_report": {
+    "total_failures": 0,
+    "failure_reasons": {}
+  },
+  "schema_validation": {
+    "valid": true,
+    "missing_columns": [],
+    "extra_columns": [],
+    "list_format_issues": {},
+    "row_count": 25,
+    "schema_version": "0.2"
+  }
+}
