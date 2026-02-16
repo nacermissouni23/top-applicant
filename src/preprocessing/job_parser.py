@@ -3,10 +3,17 @@ NLP-based job parser: transforms raw scraped data into structured, normalized fi
 
 All parsing is deterministic (regex / vocabulary-based). No LLM calls.
 This module is the core intelligence layer between raw scrape data and the output schema.
+
+⚠️  DEPRECATION WARNING (v1.0.0):
+This module is deprecated and no longer used by the core scraper pipeline.
+The scraper now focuses exclusively on raw data collection with frozen v1.0.0 schema.
+For parsing and preprocessing, please use a separate preprocessing pipeline.
+Last update: February 2025 — Frozen for backward compatibility only.
 """
 
 import re
 import logging
+import warnings
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Any, Tuple
 
@@ -474,8 +481,19 @@ def parse_job(
     """
     Parse a single job record into the full output schema.
     
+    ⚠️  DEPRECATION: This function is no longer used by the core scraper pipeline.
+    The scraper now focuses on raw data collection. For parsing, use a separate
+    preprocessing pipeline. This remains for backward compatibility.
+    
     Returns None if the record fails quality checks (no description, no skills).
     """
+    warnings.warn(
+        "parse_job() is deprecated and no longer used by the scraper pipeline. "
+        "Use a separate preprocessing pipeline for data normalization.",
+        DeprecationWarning,
+        stacklevel=2
+    )
+    
     from src.preprocessing.vocabularies import SCHEMA_VERSION, DATASET_VERSION
 
     if page_metadata is None:

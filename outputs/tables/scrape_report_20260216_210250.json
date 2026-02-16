@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-02-16T21:02:50.073673",
+  "schema_version": "0.2",
+  "dataset_version": "v0.2",
+  "scrape_report": {
+    "total_failures": 0,
+    "failure_reasons": {}
+  },
+  "schema_validation": {
+    "valid": true,
+    "note": "Raw mode - no schema validation enforced",
+    "scraper_version": "1.0.0",
+    "raw_schema_version": "1.0.0"
+  }
+}

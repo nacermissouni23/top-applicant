@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-10T20:55:09.032818",
+  "timestamp": "2026-02-16T21:11:02.923356",
   "schema_version": "0.2",
   "dataset_version": "v0.2",
   "scrape_report": {
@@ -8,10 +8,8 @@
   },
   "schema_validation": {
     "valid": true,
-    "missing_columns": [],
-    "extra_columns": [],
-    "list_format_issues": {},
-    "row_count": 25,
-    "schema_version": "0.2"
+    "note": "Raw mode - no schema validation enforced",
+    "scraper_version": "1.0.0",
+    "raw_schema_version": "1.0.0"
   }
 }

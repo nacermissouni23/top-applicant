@@ -1,3 +1,17 @@
+"""
+DEPRECATED: This module is no longer maintained.
+
+Use src.scraping.linkedin_scraper.LinkedInScraper instead, which provides:
+  - Exponential backoff on rate limiting
+  - Full job description extraction
+  - Company page extraction
+  - Data parsing and schema normalization
+  - Better error handling and logging
+
+SimpleLinkedInScraper is kept here only for reference/historical purposes.
+"""
+
+import warnings
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -5,6 +19,12 @@ import time
 import random
 import os
 import argparse
+
+warnings.warn(
+    "SimpleLinkedInScraper is deprecated. Use LinkedInScraper instead.",
+    DeprecationWarning,
+    stacklevel=2
+)
 
 class SimpleLinkedInScraper:
     def __init__(self):

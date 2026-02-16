@@ -1,0 +1,24 @@
+2026-02-16 20:31:07,110 | INFO    | src.pipeline | ============================================================
+2026-02-16 20:31:07,112 | INFO    | src.pipeline | TOP APPLICANT — Data Collection Pipeline v1.0.0
+2026-02-16 20:31:07,113 | INFO    | src.pipeline | Raw Schema Version: 1.0.0
+2026-02-16 20:31:07,114 | INFO    | src.pipeline | Scraper Version: 1.0.0
+2026-02-16 20:31:07,116 | INFO    | src.pipeline | Search: 'Data Science Intern' | Location: '' | Limit: 1
+2026-02-16 20:31:07,117 | INFO    | src.pipeline | Mode: Raw Data Collection Only (No Parsing)
+2026-02-16 20:31:07,119 | INFO    | src.pipeline | ============================================================
+2026-02-16 20:31:07,126 | INFO    | src.scraping.linkedin_scraper | Loaded 0 existing job IDs to skip.
+2026-02-16 20:31:07,127 | INFO    | src.scraping.linkedin_scraper | Phase 1: Scraping up to 1 listings for 'Data Science Intern' in ''
+2026-02-16 20:31:23,347 | INFO    | src.scraping.linkedin_scraper |   [1] Science & Software Development Intern @ Areté
+2026-02-16 20:31:24,142 | INFO    | src.scraping.linkedin_scraper | Phase 1 complete: 1 listings scraped.
+2026-02-16 20:31:24,144 | INFO    | src.scraping.linkedin_scraper | Phase 2: Extracting 1 job detail pages
+2026-02-16 20:31:24,146 | INFO    | src.scraping.linkedin_scraper |   [1/1] https://www.linkedin.com/jobs/view/science-software-development-intern-at-aret%C3%A9-4370890345
+2026-02-16 20:31:28,373 | INFO    | src.scraping.linkedin_scraper | Phase 2 complete: 1/1 jobs. Quality: 1% high, 0% med, 0% low
+2026-02-16 20:31:28,374 | INFO    | src.scraping.linkedin_scraper | Phase 3 complete: 0 unique companies extracted
+2026-02-16 20:31:28,376 | INFO    | src.scraping.linkedin_scraper | Raw job records saved: c:\top-applicant\data/raw/jobs\linkedin_raw_jobs_data_science_intern_20260216_203128.json
+2026-02-16 20:31:28,379 | INFO    | src.pipeline | Saved scrape report: outputs/tables\scrape_report_20260216_203128.json
+2026-02-16 20:31:28,380 | INFO    | src.pipeline | ============================================================
+2026-02-16 20:31:28,381 | INFO    | src.pipeline | PIPELINE COMPLETE
+2026-02-16 20:31:28,382 | INFO    | src.pipeline | Records: 1
+2026-02-16 20:31:28,383 | INFO    | src.pipeline | Failures: 0
+2026-02-16 20:31:28,384 | INFO    | src.pipeline | Output directory: c:\top-applicant\data/raw/jobs
+2026-02-16 20:31:28,386 | INFO    | src.pipeline | Log: outputs/logs\scrape_20260216_203107.log
+2026-02-16 20:31:28,388 | INFO    | src.pipeline | ============================================================

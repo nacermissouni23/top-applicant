@@ -7,9 +7,16 @@ Handles patterns like:
   - "United States"
   - "Remote"
   - "México, Mexico"
+
+⚠️  DEPRECATION WARNING (v1.0.0):
+This module is deprecated and no longer used by the core scraper pipeline.
+The scraper now focuses exclusively on raw data collection with frozen v1.0.0 schema.
+For location parsing and preprocessing, please use a separate preprocessing pipeline.
+Last update: February 2025 — Frozen for backward compatibility only.
 """
 
 import re
+import warnings
 from typing import Dict, Optional
 
 # US state abbreviations → full names
@@ -51,10 +58,21 @@ def parse_location(raw_location: str) -> Dict[str, Optional[str]]:
     """
     Parse a raw location string into structured components.
     
+    ⚠️  DEPRECATION: This function is no longer used by the core scraper pipeline.
+    The scraper now focuses on raw data collection. For location parsing, use a separate
+    preprocessing pipeline. This remains for backward compatibility.
+    
     Returns:
         dict with keys: city, region, country
         Values are None if not determinable.
     """
+    warnings.warn(
+        "parse_location() is deprecated and no longer used by the scraper pipeline. "
+        "Use a separate preprocessing pipeline for location parsing.",
+        DeprecationWarning,
+        stacklevel=2
+    )
+    
     result = {"city": None, "region": None, "country": None}
 
     if not raw_location or raw_location.strip().upper() == "N/A":

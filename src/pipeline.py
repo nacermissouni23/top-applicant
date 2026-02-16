@@ -2,10 +2,10 @@
 End-to-end pipeline orchestrator for Top Applicant data collection.
 
 Ties together scraping, extraction, parsing, and output with:
-  - Versioned outputs (Parquet + CSV)
+  - Versioned outputs (Parquet + CSV/JSON)
   - Scrape logs
   - Quality reports
-  - Schema validation
+  - Raw schema v1.0.0 support
 """
 
 import os
@@ -16,6 +16,7 @@ from datetime import datetime
 from typing import Optional, Dict, Any, List
 
 from src.scraping.linkedin_scraper import LinkedInScraper
+from src.scraping.raw_schema_v1 import SCRAPER_VERSION, RAW_SCHEMA_VERSION
 from src.preprocessing.vocabularies import (
     SCHEMA_VERSION,
     DATASET_VERSION,
@@ -110,7 +111,7 @@ def save_dataset(
     """
     Save dataset as versioned Parquet (+ optional CSV).
     
-    Parquet preserves list types; CSV flattens them to JSON strings.
+    Parquet preserves list types; CSV drops list columns (cannot be properly serialized).
     
     Returns dict of output file paths.
     """
@@ -132,17 +133,22 @@ def save_dataset(
     paths["parquet_latest"] = latest_parquet
 
     if also_save_csv:
-        # CSV (secondary — lists become JSON strings)
+        # CSV (secondary — drops list columns since CSV cannot preserve them)
         csv_path = os.path.join(
             output_dir, f"jobs_{DATASET_VERSION}_{timestamp}.csv"
         )
         df_csv = df.copy()
         list_cols = ["title_keywords", "skills_required", "skills_optional", "tools_frameworks"]
-        for col in list_cols:
-            if col in df_csv.columns:
-                df_csv[col] = df_csv[col].apply(
-                    lambda x: json.dumps(x) if isinstance(x, list) else x
-                )
+        
+        # Drop list columns from CSV
+        cols_to_drop = [col for col in list_cols if col in df_csv.columns]
+        if cols_to_drop:
+            logger.warning(
+                f"CSV export: dropping list columns {cols_to_drop} "
+                "(use Parquet for complete data)"
+            )
+            df_csv = df_csv.drop(columns=cols_to_drop)
+        
         df_csv.to_csv(csv_path, index=False)
         paths["csv"] = csv_path
         logger.info(f"Saved CSV: {csv_path}")
@@ -166,6 +172,72 @@ def save_raw_listings(
     return path
 
 
+def save_raw_jobs(
+    job_records: List[Dict[str, Any]],
+    output_dir: str = "data/raw",
+    keywords: str = "",
+) -> str:
+    """
+    Save raw job records in v1.0.0 schema format.
+    Uses JSON for now (Parquet support can be added later).
+    Includes keyword in filename if provided.
+    """
+    os.makedirs(output_dir, exist_ok=True)
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    
+    # Sanitize keyword for filename if provided
+    if keywords:
+        keyword_slug = keywords.lower().replace(" ", "_").replace("/", "_")
+        path = os.path.join(output_dir, f"linkedin_raw_jobs_{keyword_slug}_{timestamp}.json")
+    else:
+        path = os.path.join(output_dir, f"linkedin_raw_jobs_{timestamp}.json")
+    
+    try:
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(job_records, f, indent=2, ensure_ascii=False)
+        logger.info(f"Saved {len(job_records)} raw job records: {path}")
+    except TypeError as e:
+        logger.error(f"JSON serialization error in save_raw_jobs: {e}")
+        raise
+    
+    return path
+
+
+def save_raw_companies(
+    company_records: List[Dict[str, Any]],
+    output_dir: str = "data/raw",
+    keywords: str = "",
+) -> str:
+    """
+    Save raw company records in v1.0.0 schema format.
+    Uses JSON for now (Parquet support can be added later).
+    Includes keyword in filename if provided.
+    """
+    if not company_records:
+        logger.info("No company records to save")
+        return ""
+    
+    os.makedirs(output_dir, exist_ok=True)
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    
+    # Sanitize keyword for filename if provided
+    if keywords:
+        keyword_slug = keywords.lower().replace(" ", "_").replace("/", "_")
+        path = os.path.join(output_dir, f"linkedin_raw_companies_{keyword_slug}_{timestamp}.json")
+    else:
+        path = os.path.join(output_dir, f"linkedin_raw_companies_{timestamp}.json")
+    
+    try:
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(company_records, f, indent=2, ensure_ascii=False)
+        logger.info(f"Saved {len(company_records)} raw company records: {path}")
+    except TypeError as e:
+        logger.error(f"JSON serialization error in save_raw_companies: {e}")
+        raise
+    
+    return path
+
+
 def save_scrape_report(
     report: Dict[str, Any],
     schema_report: Dict[str, Any],
@@ -182,7 +254,7 @@ def save_scrape_report(
         "dataset_version": DATASET_VERSION,
         "scrape_report": {
             "total_failures": report["total_failures"],
-            "failure_reasons": report["failure_reasons"],
+            "failure_reasons": report.get("failure_reasons", report.get("top_reasons", {})),
         },
         "schema_validation": schema_report,
     }
@@ -198,72 +270,70 @@ def run_pipeline(
     keywords: str = "Data Scientist",
     location: str = "",
     limit: int = 25,
-    output_dir: str = "data/processed",
     raw_output_dir: str = "data/raw",
-    save_csv: bool = True,
+    scrape_company_pages: bool = True,
 ) -> Optional[pd.DataFrame]:
     """
-    Run the complete scraping + parsing pipeline.
+    Run the raw data collection pipeline (v1.0.0 - Raw Only).
+    
+    Scrapes listings, enriches with details, optionally fetches company pages,
+    and saves raw data in v1.0.0 schema to data/raw.
+    
+    No parsing or normalization is performed by the scraper.
     
     Args:
         keywords: Job search query
         location: Location filter (empty string = worldwide)
-        limit: Max jobs to scrape (keep 20-30 for dev)
-        output_dir: Directory for processed output
-        raw_output_dir: Directory for raw data preservation
-        save_csv: Also save CSV alongside Parquet
+        limit: Max jobs to scrape
+        raw_output_dir: Directory for raw data archive
+        scrape_company_pages: Whether to visit company about pages
     
     Returns:
-        Parsed DataFrame, or None on failure.
+        DataFrame with raw job records in v1.0.0 schema, or None on failure.
     """
     log_path = setup_logging()
     logger.info("=" * 60)
-    logger.info("TOP APPLICANT — Data Collection Pipeline")
-    logger.info(f"Schema version: {SCHEMA_VERSION}")
-    logger.info(f"Dataset version: {DATASET_VERSION}")
+    logger.info("TOP APPLICANT — Data Collection Pipeline v1.0.0")
+    logger.info(f"Raw Schema Version: {RAW_SCHEMA_VERSION}")
+    logger.info(f"Scraper Version: {SCRAPER_VERSION}")
     logger.info(f"Search: '{keywords}' | Location: '{location}' | Limit: {limit}")
+    logger.info(f"Mode: Raw Data Collection Only (No Parsing)")
     logger.info("=" * 60)
 
-    scraper = LinkedInScraper()
+    scraper = LinkedInScraper(scrape_company_pages=scrape_company_pages)
 
-    # Phase 1: Scrape listings
-    listings = scraper.scrape_listings(keywords, location, limit)
-    if not listings:
-        logger.error("No listings found. Pipeline aborted.")
+    # Raw pipeline: Scrape only (no parsing)
+    df = scraper.scrape_raw(
+        keywords=keywords,
+        location=location,
+        limit=limit,
+        output_dir=raw_output_dir
+    )
+
+    if df is None or df.empty:
+        logger.error("Pipeline produced no data. Aborting.")
         return None
 
-    # Save raw listings for reprocessing
-    save_raw_listings(listings, raw_output_dir)
+    # Summary
+    schema_report = {
+        "valid": True, 
+        "note": "Raw mode - no schema validation enforced",
+        "scraper_version": SCRAPER_VERSION,
+        "raw_schema_version": RAW_SCHEMA_VERSION,
+    }
 
-    # Phase 2: Enrich with descriptions + parse
-    records = scraper.enrich_listings(listings)
-    if not records:
-        logger.error("No records survived parsing. Pipeline aborted.")
-        return None
-
-    df = pd.DataFrame(records)
-
-    # Validate schema
-    schema_report = validate_schema(df)
-    if not schema_report["valid"]:
-        logger.warning(f"Schema validation issues: {schema_report}")
-    else:
-        logger.info("Schema validation: PASSED")
-
-    # Save outputs
-    paths = save_dataset(df, output_dir, save_csv)
-    
     # Save reports
     scrape_report = scraper.get_scrape_report()
     save_scrape_report(scrape_report, schema_report)
 
-    # Summary
+    # Summary logging
     logger.info("=" * 60)
     logger.info("PIPELINE COMPLETE")
     logger.info(f"Records: {len(df)}")
     logger.info(f"Failures: {scrape_report['total_failures']}")
-    logger.info(f"Output: {paths}")
+    logger.info(f"Output directory: {raw_output_dir}")
     logger.info(f"Log: {log_path}")
     logger.info("=" * 60)
 
     return df
+
